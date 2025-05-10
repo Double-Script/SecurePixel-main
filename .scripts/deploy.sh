@@ -15,18 +15,18 @@ source /home/ubuntu/SecurePixel-main/secp/bin/activate
 echo "Virtual env 'mb' Activated !"
 
 echo "Clearing Cache..."
-python manage.py clean_pyc
-python manage.py clear_cache
+python3 manage.py clean_pyc
+python3 manage.py clear_cache
 
 echo "Installing Dependencies..."
 pip install -r requirements.txt --no-input
 
 echo "Serving Static Files..."
-python manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput
 
 echo "Running Database migration..."
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 
 # Deactivate Virtual Env
 deactivate
