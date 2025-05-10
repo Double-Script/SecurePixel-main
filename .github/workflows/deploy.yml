@@ -22,4 +22,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd ~/SecurePixel-main/SecurePixel/ && ./.scripts/deploy.sh"
+          script: "cd ~/SecurePixel-main/SecurePixel/ && /home/ubuntu/SecurePixel-main/.scripts/deploy.sh"
