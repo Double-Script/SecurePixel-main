@@ -28,6 +28,7 @@ echo "Running Database migration..."
 python3 manage.py makemigrations
 python3 manage.py migrate
 
+
 # Deactivate Virtual Env
 deactivate
 echo "Virtual env 'mb' Deactivated !"
