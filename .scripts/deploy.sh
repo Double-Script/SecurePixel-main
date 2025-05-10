@@ -12,7 +12,7 @@ echo "New changes copied to server !"
 #Syntax:- source virtual_env_name/bin/activate
 source /home/ubuntu/SecurePixel-main/secp/bin/activate
 
-echo "Virtual env 'mb' Activated !"
+echo "Virtual env 'secp' Activated !"
 
 echo "Clearing Cache..."
 # python3 manage.py clean_pyc
@@ -31,7 +31,7 @@ python3 manage.py migrate
 
 # Deactivate Virtual Env
 deactivate
-echo "Virtual env 'mb' Deactivated !"
+echo "Virtual env 'secp' Deactivated !"
 
 echo "Reloading App..."
 #kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
