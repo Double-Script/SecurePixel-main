@@ -23,11 +23,12 @@ echo "Installing Dependencies..."
 pip install -r /home/ubuntu/SecurePixel-main/requirements.txt --no-input
 
 echo "Serving Static Files..."
-python3 "/home/ubuntu/SecurePixel-main/SecurePixel/" manage.py collectstatic --noinput
+python3 /home/ubuntu/SecurePixel-main/SecurePixel/manage.py collectstatic --noinput
 
 echo "Running Database migration..."
-python3 "/home/ubuntu/SecurePixel-main/SecurePixel/" manage.py makemigrations
-python3 "/home/ubuntu/SecurePixel-main/SecurePixel/" manage.py migrate
+python3 /home/ubuntu/SecurePixel-main/SecurePixel/manage.py makemigrations
+python3 /home/ubuntu/SecurePixel-main/SecurePixel/manage.py migrate
+
 
 # Deactivate Virtual Env
 deactivate
