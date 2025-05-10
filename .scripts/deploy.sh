@@ -1,14 +1,8 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="/home/ubuntu/SecurePixel-main"
-VENV_PATH="$PROJECT_ROOT/secp"
-MANAGE="$PROJECT_ROOT/SecurePixel/manage.py"
 
 echo "Deployment started ..."
-
-# Navigate to the project directory
-cd "$PROJECT_ROOT"
 
 # Pull the latest version of the app
 echo "Copying New changes...."
@@ -16,28 +10,31 @@ git pull origin main
 echo "New changes copied to server !"
 
 # Activate Virtual Env
-source "$VENV_PATH/bin/activate"
+#Syntax:- source virtual_env_name/bin/activate
+source /home/ubuntu/SecurePixel-main/secp/bin/activate
+
 echo "Virtual env 'secp' Activated !"
 
-# Clear Python bytecode cache
-echo "Clearing Python bytecode cache (.pyc)..."
-find "$PROJECT_ROOT" -name "*.pyc" -delete
+echo "Clearing Cache..."
+# python3 manage.py clean_pyc
+# python3 manage.py clear_cache
 
 echo "Installing Dependencies..."
-pip install -r "$PROJECT_ROOT/requirements.txt" --no-input
+pip install -r /home/ubuntu/SecurePixel-main/requirements.txt --no-input
 
 echo "Serving Static Files..."
-python3 "$MANAGE" collectstatic --noinput
+python3 "/home/ubuntu/SecurePixel-main/SecurePixel/" manage.py collectstatic --noinput
 
 echo "Running Database migration..."
-python3 "$MANAGE" makemigrations
-python3 "$MANAGE" migrate
+python3 "/home/ubuntu/SecurePixel-main/SecurePixel/" manage.py makemigrations
+python3 "/home/ubuntu/SecurePixel-main/SecurePixel/" manage.py migrate
 
 # Deactivate Virtual Env
 deactivate
 echo "Virtual env 'secp' Deactivated !"
 
 echo "Reloading App..."
-ps aux | grep gunicorn | grep SecurePixel/SecurePixel | awk '{ print $2 }' | xargs kill -HUP
+#kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
+ps aux |grep gunicorn |grep SecurePixel/SecurePixel | awk '{ print $2 }' |xargs kill -HUP
 
 echo "Deployment Finished !"
