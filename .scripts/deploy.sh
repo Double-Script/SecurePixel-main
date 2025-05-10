@@ -10,7 +10,7 @@ echo "New changes copied to server !"
 
 # Activate Virtual Env
 #Syntax:- source virtual_env_name/bin/activate
-source secp/bin/activate
+source /home/ubuntu/SecurePixel-main/SecurePixel/venv/bin/activate
 echo "Virtual env 'mb' Activated !"
 
 echo "Clearing Cache..."
