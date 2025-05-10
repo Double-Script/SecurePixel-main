@@ -34,7 +34,15 @@ deactivate
 echo "Virtual env 'secp' Deactivated !"
 
 echo "Reloading App..."
-#kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
-ps aux |grep gunicorn |grep SecurePixel/SecurePixel | awk '{ print $2 }' |xargs kill -HUP
 
-echo "Deployment Finished !"
+GUNICORN_PID=$(ps aux | grep gunicorn | grep SecurePixel/SecurePixel | grep -v grep | awk '{ print $2 }')
+
+if [ -z "$GUNICORN_PID" ]; then
+    echo "Gunicorn process not found. Starting a new instance..."
+    # Optional: Start gunicorn manually if needed
+    # Example:
+    # nohup gunicorn SecurePixel.wsgi:application --bind 0.0.0.0:8000 --daemon --chdir /home/ubuntu/SecurePixel-main/SecurePixel/ --pid /tmp/gunicorn.pid
+else
+    echo "Sending HUP to Gunicorn PID: $GUNICORN_PID"
+    kill -HUP "$GUNICORN_PID"
+fi
