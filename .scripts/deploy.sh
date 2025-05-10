@@ -15,8 +15,8 @@ source /home/ubuntu/SecurePixel-main/secp/bin/activate
 echo "Virtual env 'mb' Activated !"
 
 echo "Clearing Cache..."
-python3 manage.py clean_pyc
-python3 manage.py clear_cache
+# python3 manage.py clean_pyc
+# python3 manage.py clear_cache
 
 echo "Installing Dependencies..."
 pip install -r requirements.txt --no-input
