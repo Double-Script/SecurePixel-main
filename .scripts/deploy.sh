@@ -16,14 +16,15 @@ source /home/ubuntu/SecurePixel-main/secp/bin/activate
 echo "Virtual env 'secp' Activated !"
 
 echo "Clearing Cache..."
-# python3 manage.py clean_pyc
-# python3 manage.py clear_cache
+cd /home/ubuntu/SecurePixel-main/SecurePixel
+python3 manage.py clean_pyc
+python3 manage.py clear_cache
 
 echo "Installing Dependencies..."
 pip install -r /home/ubuntu/SecurePixel-main/requirements.txt --no-input
 
 echo "Serving Static Files..."
-cd /home/ubuntu/SecurePixel-main/SecurePixel
+
 python3 manage.py collectstatic --noinput
 
 echo "Running Database migration..."
